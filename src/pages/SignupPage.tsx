@@ -8,7 +8,7 @@ export const SignupPage: React.FC = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [role, setRole] = useState<'client' | 'photographer' | 'admin'>('client')
+  const [role, setRole] = useState<'client' | 'photographer'>('client')
   const [error, setError] = useState<string | null>(null)
   const navigate = useNavigate()
   const location = useLocation()
@@ -36,7 +36,6 @@ export const SignupPage: React.FC = () => {
     } else {
       if (role === 'client') navigate('/dashboard/client', { replace: true })
       else if (role === 'photographer') navigate('/dashboard/photographer', { replace: true })
-      else navigate('/dashboard/admin', { replace: true })
     }
   }
 
@@ -44,7 +43,7 @@ export const SignupPage: React.FC = () => {
     <div className="page signup-page">
       <div className="signup-card">
         <h1>Create account</h1>
-        <p className="muted">Sign up and choose whether you are a client, photographer, or admin.</p>
+        <p className="muted">Sign up and choose whether you are a client or photographer.</p>
         <form onSubmit={handleSubmit} className="signup-form">
           <label>
             Name
@@ -93,13 +92,6 @@ export const SignupPage: React.FC = () => {
                 onClick={() => setRole('photographer')}
               >
                 Photographer
-              </button>
-              <button
-                type="button"
-                className={role === 'admin' ? 'role-btn active' : 'role-btn'}
-                onClick={() => setRole('admin')}
-              >
-                Admin
               </button>
             </div>
           </div>
